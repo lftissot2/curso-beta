@@ -4,6 +4,8 @@ namespace App\Services;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Hash;
 
 class CandidatoService extends GenericService
 {
@@ -22,5 +24,19 @@ class CandidatoService extends GenericService
         })
         ->when($sortBy, fn ($q) => $q->orderBy($sortBy, $sortDir))
         ->paginate($perPage ?? 20);
+    }
+
+    public function create(array $data): Model {
+        if (isset($data['password']))
+            $data['password'] = Hash::make($data['password']);
+        
+        return parent::create($data);
+    }
+
+    public function update(array $data): Model {
+        if (isset($data['password']))
+            $data['password'] = Hash::make($data['password']);
+        
+        return parent::update($data);
     }
 }

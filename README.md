@@ -22,13 +22,20 @@ O QJobs é uma aplicação simplificada para a divulgação e candidatura em vag
 - NGINX
 
 ### 🏁 Executando o projeto
-Docker WIP
+Para executar o projeto, execute os seguintes comandos:
+```
+docker-compose up -d
+docker exec -it curso-beta_app_1 composer install
+docker exec -it curso-beta_app_1 php artisan key:generate
+docker exec -it curso-beta_app_1 php artisan migrate --seed
+```
+Na sequência, acesse http://localhost:8001
 
 ### 🔑 Contas
 #### Admin
-- User: adm@qjobs.com
-- Password: 123
+- Email: adm@qjobs.com
+- Senha: 123
 
 #### Candidato
-- User: cand@qjobs.com
-- Password: 123
+- Email: cand@qjobs.com
+- Senha: 123
